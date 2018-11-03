@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Your Reward</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                font-family: papyrus, herculanum, "fantasy";
+                background: indigo;
+                color: silver;
+            }
+            footer {
+                color: gray;
+            }
+            a {
+                color: grey;
+                font-size: 0.8em;
+            }            
+        </style>        
+        <!--<script src="https://raw.githubusercontent.com/processing-js/processing-js/v1.4.8/processing.min.js"></script>-->
+        <script src="https://cs.nyu.edu/~kapp/cs101/processing_on_the_web/processing.js"></script>
+    </head>
+<body> 
+    <h1>When you're ready to get back to work after your well-deserved fun, click <a href="index.html">here.</a></h1>
+    <canvas id="canvas"></canvas>
+    <script>
+        var canvas = document.getElementById("canvas");
+        var processing = new Processing(canvas, function(processing) {
+            processing.size(800, 800);
+            processing.background(0xFFF);
+    
+            var mouseIsPressed = false;
+            processing.mousePressed = function () { mouseIsPressed = true; };
+            processing.mouseReleased = function () { mouseIsPressed = false; };
+    
+            var keyIsPressed = false;
+            processing.keyPressed = function () { keyIsPressed = true; };
+            processing.keyReleased = function () { keyIsPressed = false; };
+    
+            function getImage(s) {
+                var url = "https://www.kasandbox.org/programming-images/" + s + ".png";
+                processing.externals.sketch.imageCache.add(url);
+                return processing.loadImage(url);
+            }
+    
+            with (processing) { 
+                
+                
+                // INSERT YOUR KHAN ACADEMY "JavaScript" BETWEEN THESE HEADERS
+                background(192, 192, 192);
+                
+                var drawWinston = function(faceX, faceY, size) {
+                    fill(75, 0, 130);
+                    ellipse(faceX, faceY, size, size); // face
+                    fill(192, 192, 192);
+                    ellipse(faceX - size/6, faceY - 5/18*size, size/6, size/6); // eyes
+                    ellipse(faceX + 44/180*size, faceY - 55/180*size, size/6, size/6);
+                    ellipse(faceX + 19/180*size, faceY + 32/180*size, 4/9*size, 4/9*size); // mouth
+                    textSize(4/9*size);
+                    fill(75, 0, 130);
+                    textSize(size/25);
+                    text("Yyyyyyello!", faceX + 19/180*size, faceY + 32/180*size);
+                };
+
+                draw = function() {
+                    drawWinston (mouseX, mouseY, 100*mouseY/mouseX);
+                };
+                
+        //INSERT PROGRAM BETWEEN THESE HEADERS
+    
+    }    
+            if (typeof draw !== 'undefined') processing.draw = draw;
+        }); 
+    </script>
+</body>
+    
+</html>
